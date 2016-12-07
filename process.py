@@ -1,6 +1,6 @@
 # Author: Kenneth Bailey
 # Date: 12/6/2016
-# Prog: python script to process new illegal downloads
+# Prog: python script to process new downloads
 
 import zipfile as zz
 import os 
