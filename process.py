@@ -17,7 +17,7 @@ artists = []
 years = []
 genres = []
 bitrates = []
-
+trackCount = 0
 
 if str(sys.argv[1]).endswith(".zip"):
 	# extract files
@@ -28,6 +28,8 @@ if str(sys.argv[1]).endswith(".zip"):
 	for dirpath, dirs, files in os.walk(tempFolder):
 		for file in files:
 			if file.endswith((".mp3",".m4a")):
+				trackCount += 1
+				
 				# get file name
 				fname = os.path.join(dirpath,file)
 
@@ -42,18 +44,53 @@ if str(sys.argv[1]).endswith(".zip"):
 				if tag.genre not in genres: genres.append(tag.genre)
 				if tag.year not in years: years.append(tag.year)
 
-	# print info
+	# print album info
 	if len(albums) == 1: 
-		print("Album: %s", % albums[0]
-	else if len(albums) == 0:
+		print("Album: %s" % albums[0])
+	elif len(albums) == 0:
 		print "Album: none listed"
 	else:
 		print "Multiple Albums!"
-
-	print "\n Album Artist: ".join(str(p) for p in aartists)
-	print "\n Artist: ".join(str(p) for p in artists)
-	print "\n Year: ".join(str(p) for p in years)
-	print "\n Genre: ".join(str(p) for p in genres)
-	print "\n Bitrate: ".join(str(p) for p in bitrates) 	
+	# print album artist info
+	if len(aartists) == 1:
+		print ("Album Artist: %s" % aartists[0])
+	elif len(aartists) == 0:
+		print "Album Artist: none listed"
+	else:
+		print "Multiple Album Artists!"
+	# print artist info
+	if len(artists) == 1:
+		print("Artist: %s" % artists[0])
+	elif len(artists) == 0:
+		print "Artist: none listed"
+	else:
+		print "Muliple Artists!"
+	# print year info
+	if len(years) == 1:
+		print("Year: %s" % years[0])
+	elif len(years) == 0:
+		print "Year: none listed"
+	else:
+		print "Multiple Years!"
+	# print genre info
+	if len(genres) == 1:
+		print("Genre: %s" % genres[0])
+	elif len(genres) == 0:
+		print "Genre: none listed"
+	else:
+		print "Multiple Genres"
+	# print track count info
+	print("# tracks: %s" % trackCount)
+	# print bitrate info
+	if len(bitrates) == 1:
+		print("Bitrate: %s" % bitrates[0])
+	else:
+		print "Multiple Bitrates: ",
+		for bit in bitrates:
+			print bit,			
+			
+ 
 else:
-	print "booo"
+	print "Improper arguments! .zip files only!"
+
+
